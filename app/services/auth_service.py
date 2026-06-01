@@ -3,6 +3,9 @@ from sqlalchemy.orm import Session
 from app.models.user import User
 from app.schemas.auth import SignupRequest
 from passlib.context import CryptContext
+import random
+
+otp_store = {}
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -13,6 +16,25 @@ def calculate_age(dob: date) -> int:
         (today.month, today.day) < (dob.month, dob.day)
     )
 
+def generate_otp():
+    return str(random.randint(100000, 999999))
+
+
+def save_otp(phone: str, otp: str):
+    otp_store[phone] = otp
+
+
+def verify_saved_otp(phone: str, otp: str):
+    saved = otp_store.get(phone)
+
+    if saved is None:
+        return False
+
+    if saved != otp:
+        return False
+
+    del otp_store[phone]
+    return True
 
 def signup_user(data: SignupRequest, db: Session):
 
