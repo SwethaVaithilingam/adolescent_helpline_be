@@ -10,8 +10,9 @@ class User(Base):
     full_name = Column(String(100))
     dob = Column(Date)
     phone = Column(String(15), unique=True, index=True)
-    password = Column(String(255))
+    password = Column(String(100))
     student_class = Column(String(20))
+    school_name=Column(String(50))
     district = Column(String(50))
     created_at = Column(
         DateTime(timezone=True),

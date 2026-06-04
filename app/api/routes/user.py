@@ -19,6 +19,7 @@ def get_profile(current_user: User = Depends(get_current_user)):
         "phone": current_user.phone,
         "age": age,
         "student_class": current_user.student_class,
+        "school_name":current_user.school_name,
         "district": current_user.district,
     }
 
@@ -38,5 +39,6 @@ def edit_profile(
         "phone": updated_user.phone,
         "age": age,
         "student_class": updated_user.student_class,
+        "school_name":updated_user.school_name,
         "district": updated_user.district,
     }

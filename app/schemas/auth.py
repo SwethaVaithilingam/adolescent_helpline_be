@@ -8,10 +8,10 @@ class SignupRequest(BaseModel):
     full_name: str = Field(..., min_length=2, max_length=50)
     dob: date
     phone: str
-    password: str = Field(..., min_length=6)
+    password: str = Field(..., min_length=3)
     student_class: str
+    school_name:str
     district: str = Field(..., min_length=2, max_length=50)
-
     # Validate Indian phone number
     @validator("phone")
     def validate_phone(cls, v):
@@ -51,25 +51,25 @@ class SignupRequest(BaseModel):
 class SignupResponse(BaseModel):
     message: str
 
-class SendOtpRequest(BaseModel):
-    phone: str
+# class SendOtpRequest(BaseModel):
+#     phone: str
 
-    @validator("phone")
-    def validate_phone(cls, v):
-        if not re.match(r'^[6-9]\d{9}$', v):
-            raise ValueError("Invalid Indian phone number")
-        return v
+#     @validator("phone")
+#     def validate_phone(cls, v):
+#         if not re.match(r'^[6-9]\d{9}$', v):
+#             raise ValueError("Invalid Indian phone number")
+#         return v
 
 
-class VerifyOtpRequest(BaseModel):
-    phone: str
-    otp: str
+# class VerifyOtpRequest(BaseModel):
+#     phone: str
+#     otp: str
 
-    @validator("phone")
-    def validate_phone(cls, v):
-        if not re.match(r'^[6-9]\d{9}$', v):
-            raise ValueError("Invalid Indian phone number")
-        return v
+#     @validator("phone")
+#     def validate_phone(cls, v):
+#         if not re.match(r'^[6-9]\d{9}$', v):
+#             raise ValueError("Invalid Indian phone number")
+#         return v
 # ---------- Login ----------
 class LoginRequest(BaseModel):
     phone: str

@@ -15,6 +15,7 @@ def update_user_profile(current_user: User, data, db: Session):
     current_user.full_name = data.name
     current_user.dob = data.dob
     current_user.student_class = data.student_class
+    current_user.school_name=data.school_name
     current_user.district = data.district
 
     db.commit()
