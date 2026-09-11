@@ -9,7 +9,7 @@ class Phq9Result(Base):
     phone = Column(String(15), index=True, nullable=False)
     answers = Column(JSON, nullable=False)
     total_score = Column(Integer, nullable=False)
-    severity = Column(String(20), nullable=False)
+    severity = Column(String(255), nullable=False)
 
     created_at = Column(
         DateTime(timezone=True),

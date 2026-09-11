@@ -23,8 +23,8 @@ class SignupRequest(BaseModel):
     @validator("full_name")
     def validate_name(cls, v):
         v = v.strip()
-        if not re.match(r'^[A-Za-z ]+$', v):
-            raise ValueError("Name must contain only alphabets and spaces")
+        if not re.match(r'^[A-Za-z. ]+$', v):
+            raise ValueError("Name must contain only alphabets, dots and spaces")
         return v
 
     # Validate district (alphabets and spaces only)
